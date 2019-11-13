@@ -58,9 +58,9 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
-            'zip' => ['integer', 'max:255'],
+            'zip' => [ 'nullable','integer', 'max:9999'],
             'line_1' => ['required', 'string', 'max:255'],
-            'line_2' => ['string', 'max:255'],
+            'line_2' => ['nullable','string', 'max:255'],
         ]);
     }
 
@@ -80,11 +80,10 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
         ]);
 
-        
-        
-        $userId = $user->id;
+        $user_id = $user->id;
+
         Address::create([
-            'user_id' => $userId,
+            'user_id' => $user_id,
             'country' => $data['country'],
             'city' => $data['city'],
             'zip' => $data['zip'],

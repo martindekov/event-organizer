@@ -9,7 +9,7 @@ class Address extends Model
     protected $guarded = [];
 
     /*protected $fillable = [
-        'county', 'city', 'zip', 'line_1', 'line_2',
+        'county', 'city', 'line_1',
     ];*/
 
     public function user(){

@@ -18,9 +18,9 @@ class CreateAddressesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('country');
             $table->string('city');
-            $table->integer('zip');
+            $table->integer('zip')->nullable();
             $table->string('line_1');
-            $table->string('line_2');
+            $table->string('line_2')->nullable();
             $table->timestamps();
         });
     }
