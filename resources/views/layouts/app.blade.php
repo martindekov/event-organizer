@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') EventOrganizer</title>
+    <title>@yield('title') EventO</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -51,6 +51,23 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+
+                        <!-- not working -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ __('Events') }}</a>
+                        </li>
+
+                        <!-- to here -->
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/about')}}">{{ __('About') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contacts')}}">{{ __('Contacts') }}</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -63,40 +80,30 @@
                         @endif
                         @else
 
-                        <!-- not working -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Buy Ticket') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('All Events') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Blog') }}</a>
-                        </li>
-                        <!-- to here -->
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/about')}}">{{ __('About') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contacts')}}">{{ __('Contacts') }}</a>
-                        </li>
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <span class="caret"></span>
+                                <span class="caret">My account</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('Edit Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('Profile') }}</a>
 
+                                <form class="accordion" id="accordion">
+                                    <div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Upcoming events
+                                        </a>
+                                        <div id="collapseOne" class="collapse px-2" data-parent="#accordion">
+                                            <a class="dropdown-item" href="#">{{ __('approved') }}</a>
+                                            <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <a class="dropdown-item" href="#">{{ __('Event requests') }}</a>
+                                <a class="dropdown-item" href="#">{{ __('Radings') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"> {{ __('Sign Out') }}
+                                    document.getElementById('logout-form').submit();"> {{ __('Log out') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
