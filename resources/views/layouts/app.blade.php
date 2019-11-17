@@ -90,8 +90,8 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="{{ route('options')}}">{{ __('Options') }}</a>
+                                
+                                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('Edit Profile') }}</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"> {{ __('Sign Out') }}
