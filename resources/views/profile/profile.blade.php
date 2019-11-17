@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Profile')
+
 @section('content')
 <div class="container">
     <div class="container">
@@ -87,9 +89,15 @@
                             <div class="col-md-3 mb-3">
                                 <div class="font-weight-bold pb-1">{{ __('zip') }}</div>
 
+                                @if ($user->address['zip'] == null)
+                                <div>
+                                    <label for="line_2">{{ __('No zip added') }}</label>
+                                </div>
+                                @else
                                 <div>
                                     <label for="zip">{{ $user->address['zip'] }}</label>
                                 </div>
+                                @endif
                             </div>
                         </div>
 
@@ -106,9 +114,15 @@
                             <div class="col-md-12 mb-3">
                                 <div class="font-weight-bold pb-1">{{ __('Address Line 2') }}</div>
 
+                                @if ($user->address['line_2'] == null)
+                                <div>
+                                    <label for="line_2">{{ __('No address added') }}</label>
+                                </div>
+                                @else
                                 <div>
                                     <label for="line_2">{{ $user->address['line_2'] }}</label>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

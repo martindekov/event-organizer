@@ -44,7 +44,6 @@ class ProfilesController extends Controller
         auth()->user()->update($userData);
         auth()->user()->address->update($addressData);
 
-        //Flash::message('Your account has been updated!');
-        return redirect("/profile/{$user->id}");
+        return redirect("/profile/{$user->id}")->with('success','You have successfully updated you profile.');
     }
 }

@@ -27,4 +27,4 @@ Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.upda
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/contacts', 'ContactsController@index')->name('contacts');
 
-Route::post('/password/reset', 'Auth\PasswordController@reset');
+Route::post('/password/reset', 'Auth\PasswordController@reset')->name('password.update');

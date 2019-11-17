@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Event Organizer') }}</title>
+    <title>@yield('title') EventOrganizer</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,12 +28,14 @@
                 @guest
                 @if (Route::has('register'))
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name') }}
+                    @yield('title')
+                    <!-- {{ config('app.name') }} -->
                 </a>
                 @endif
                 @else
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name') }}
+                    @yield('title')
+                    <!-- {{ config('app.name') }} -->
                 </a>
                 @endguest
 
@@ -90,7 +92,7 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                
+
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('Edit Profile') }}</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
