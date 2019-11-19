@@ -1,5 +1,5 @@
 @extends('layouts.app')
- 
+
 @section('title', 'Sign Up')
 
 @section('content')
@@ -7,12 +7,22 @@
     <div class="row justify-content-center">
         <div class="card">
             <div class="card-header text-center pt-3 pb-2 mb-2">
-                <h4>{{ __('Register') }}</h4>
+                <h3>{{ __('Fill in the registration form to proceed to Evento') }}</h3>
             </div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
+
+                    <div class="form-row">
+                        <div class="font-weight-bold pb-1 mb-2">{{ __('Create your account') }}</div>
+
+                        <select name="role" class="custom-select mb-3" id="role" required>
+                            <option value="" disabled selected hidden>Account Type</option>
+                            <option value="Client">Client</option>
+                            <option value="Organizer">Organizer</option>
+                        </select>
+                    </div>
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -98,16 +108,17 @@
                         </div>
                     </div>
 
-                    <p class="text-center">Address</p>
-                    <hr>
+                    <div class="text-center border-bottom pb-2 mb-3">
+                        {{ __('Address') }}
+                    </div>
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="country">Coutry</label>
 
                             <!-- Murzi me da go pravq s php i jquery -->
-                            <select name="country" class="custom-select" id="country">
-                                <option value="">Select Country</option>
+                            <select name="country" class="custom-select" id="country" required>
+                                <option value="" disabled selected hidden>Select Country</option>
                                 <option value="Afghanistan">Afghanistan</option>
                                 <option value="Åland Islands">Åland Islands</option>
                                 <option value="Albania">Albania</option>
@@ -418,7 +429,7 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-5">
+                        <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Sign Up') }}
                             </button>

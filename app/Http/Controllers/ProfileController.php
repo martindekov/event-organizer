@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class ProfilesController extends Controller
+class ProfileController extends Controller
 {
     public function index($user)
     {

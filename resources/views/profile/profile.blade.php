@@ -20,15 +20,15 @@
                 <div class="row">
                     <div class="text-center col-md-3 ">
                         <div>
-                            <a href="{{ route('profile.edit', auth()->user()->id)}}" class="btn mb-2 mt-2 btn-secondary btn-block">Edit Prifile</a>
+                            <a href="{{ route('profile.edit', auth()->user()->id)}}" class="btn mb-2 mt-2 btn-primary btn-block">Edit Prifile</a>
                         </div>
 
                         <div>
-                            <a href="#" class="btn mb-2 btn-secondary btn-block">Change Picture</a>
+                            <a href="#" class="btn mb-2 btn-primary btn-block">Change Picture</a>
                         </div>
 
                         <div>
-                            <a href="#" class="btn mb-2 btn-secondary btn-block">Change Password</a>
+                            <a href="#" class="btn mb-2 btn-primary btn-block">Change Password</a>
                         </div>
                     </div>
 

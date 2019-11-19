@@ -7,13 +7,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card text-center">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-header pt-3 pb-2 mb-2">
+                    <h3>{{ __('Verify Your Email Address') }}</h3>
+                </div>
 
                 <div class="card-body">
                     @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ __('A fresh verification link has been sent to your email address.') }}
+                    </div>
                     @endif
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}

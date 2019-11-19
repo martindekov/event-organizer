@@ -10,8 +10,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">{{ __('Login') }}</div>
-
+                <div class="text-center mt-4">
+                    <h2>{{ __('Sign In') }}</h2>
+                </div>
+                <!-- card-header -->
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -44,28 +46,34 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
+                            <div class="col-md-6 offset-md-6">
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    {{ __('Login') }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-2 ">
+                            <div class="col-md-12 text-center">
+                                <label for="country">Dont have an account?</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary">
+                                    <a href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                                </button>
                             </div>
                         </div>
                     </form>

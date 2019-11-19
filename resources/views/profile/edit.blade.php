@@ -396,19 +396,11 @@
                     </div>
 
                     <div class="form-row mb-2">
+                        <div class="col-md-12 text-center">
+                            <button class="col-md-2 btn btn-secondary btn" href="{{ route('profile.show', auth()->user()->id)}}">Back</button>
 
-                    <!--
-                        <div class="col-md-6">
-                            <a class="btn btn-primary" href="{{ route('profile.show', auth()->user()->id)}}" role="button">{{ __('Back') }}</a>
+                            <button class="col-md-2 btn btn-primary btn ml-3" type="submit">Update Profile</button>
                         </div>
-                    -->
-
-                        <div class="col-md-6 offset-md-5">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Update Profile') }}
-                            </button>
-                        </div>
-
                     </div>
                 </form>
             </div>
