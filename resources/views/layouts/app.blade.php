@@ -63,7 +63,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contacts')}}">{{ __('Contacts') }}</a>
+                            <a class="nav-link" href="{{ url('/contact')}}">{{ __('Contacts') }}</a>
                         </li>
 
                         <!-- Authentication Links -->
@@ -95,14 +95,18 @@
                                             Upcoming events
                                         </a>
                                         <div id="collapseOne" class="collapse px-2" data-parent="#accordion">
+
                                             <a class="dropdown-item" href="#">{{ __('approved') }}</a>
+
                                             <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
                                         </div>
                                     </div>
                                 </form>
 
                                 <a class="dropdown-item" href="#">{{ __('Event requests') }}</a>
+
                                 <a class="dropdown-item" href="#">{{ __('Radings') }}</a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"> {{ __('Log out') }}
                                 </a>
@@ -119,6 +123,15 @@
         </nav>
 
         <main class="py-4">
+
+            <div class="container">
+                @if(Session::has('success'))
+                <div class="alert alert-success text-center">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
+            </div>
+
             @yield('content')
         </main>
     </div>
