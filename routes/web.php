@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->middleware('verified');
+Route::get('/home', 'HomeController@index');//->middleware('verified');
 
 //For user edit  
 Route::get('/profile/{user}', 'ProfileController@index')->name('profile.show');

@@ -50,13 +50,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-
-                        <!-- not working -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Events') }}</a>
+                            <a class="nav-link" href="{{ url('/home')}}">{{ __('Events') }}</a>
                         </li>
-
-                        <!-- to here -->
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/about')}}">{{ __('About') }}</a>
@@ -87,25 +83,22 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
-                                <form class="accordion" id="accordion">
-                                    <div>
-                                        <a class="dropdown-item" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                            Upcoming events
-                                        </a>
-                                        <div id="collapseOne" class="collapse px-2" data-parent="#accordion">
+                                <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
+                                    {{ __('My upcoming events') }}
+                                </a>
+                                <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
-                                            <a class="dropdown-item" href="#">{{ __('approved') }}</a>
+                                    <a class="dropdown-item" href="#">{{ __('approved') }}</a>
 
-                                            <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
-                                        </div>
-                                    </div>
-                                </form>
+                                    <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
 
-                                <a class="dropdown-item" href="#">{{ __('Event requests') }}</a>
+                                </div>
 
-                                <a class="dropdown-item" href="#">{{ __('Radings') }}</a>
+                                <a class="dropdown-item" href="#">{{ __('My event requests') }}</a>
+
+                                <a class="dropdown-item" href="#">{{ __('My radings') }}</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"> {{ __('Log out') }}
