@@ -40,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group center-block">
+                            <div class="form-group">
                                 <div class="col-md-8 mb-3 offset-md-2">
                                     <select name="subject" class="form-control custom-select mb-3" id="subject" required>
                                         <option value="" disabled selected hidden>What's this about?</option>

@@ -24,7 +24,7 @@
                     <a class="main-nav-link nav-link" href="{{ url('/home') }}">Home</a>
                     @else
                     <!-- not working -->
-                    <a class="main-nav-link nav-link" href="{{ url('/calendar') }}">not working: Calendar</a>
+                    <a class="main-nav-link nav-link" href="{{ url('/home') }}">Calendar</a>
 
                     <a class="main-nav-link nav-link" href="{{ route('login') }}">Login</a>
 

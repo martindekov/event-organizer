@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     
     public function address()
     { 
-        return $this->hasOne(Address::class);
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     /**
@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'firstname', 'lastname',
+        'address_id', 'username', 'email', 'password', 'firstname', 'lastname',
     ];
 
     /**

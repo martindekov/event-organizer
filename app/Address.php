@@ -8,7 +8,8 @@ class Address extends Model
 {
     protected $guarded = [];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }
