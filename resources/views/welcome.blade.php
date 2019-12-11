@@ -23,8 +23,8 @@
                     @auth
                     <a class="main-nav-link nav-link" href="{{ url('/home') }}">Home</a>
                     @else
-                    <!-- not working -->
-                    <a class="main-nav-link nav-link" href="{{ url('/home') }}">Calendar</a>
+                    
+                    <a class="main-nav-link nav-link" href="{{ url('/home') }}">Events</a>
 
                     <a class="main-nav-link nav-link" href="{{ route('login') }}">Login</a>
 
@@ -40,7 +40,7 @@
 
         <main role="main" class="inner cover m-auto">
             <h1 class="cover-heading">Event Organizer</h1>
-            <p class="lead">nqkakuv tekst kakuvto i da gfe masd . mfdpiknmoiskn f.sdf pmnfisonfd idsfekfsnie ,sdf . fklmnoeknf skodfnasd efsdfnmkjcv nijcvn djivnrien vfdjvk ndivnr dkvnrjuidvn.</p>
+            <p class="lead"> information.</p>
             <p class="lead">
                 <a href="{{ url('/about')}}" class="btn btn-lg btn-secondary">Learn more</a>
             </p>

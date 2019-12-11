@@ -27,13 +27,13 @@
             <div class="container">
                 @guest
                 @if (Route::has('register'))
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    @yield('title')
+                <a class="navbar-brand" href="{{ route('login') }}">
+                    EventO
                 </a>
                 @endif
                 @else
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    @yield('title')
+                    EventO
                 </a>
                 @endguest
 
@@ -51,15 +51,15 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home')}}">{{ __('Events') }}</a>
+                            <a class="nav-link" href="{{ url('/home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/about')}}">{{ __('About') }}</a>
+                            <a class="nav-link" href="{{ url('/about') }}">{{ __('About') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contact')}}">{{ __('Contacts') }}</a>
+                            <a class="nav-link" href="{{ url('/contact') }}">{{ __('Contacts') }}</a>
                         </li>
 
                         <!-- Authentication Links -->
@@ -119,8 +119,14 @@
 
             <div class="container">
                 @if(Session::has('success'))
-                <div class="alert alert-success text-center">
+                <div class="alert alert-success text-center" role="alert">
                     {{ Session::get('success') }}
+                </div>
+                @endif
+
+                @if(Session::has('error'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ Session::get('error') }}
                 </div>
                 @endif
             </div>

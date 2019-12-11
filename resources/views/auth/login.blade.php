@@ -68,9 +68,7 @@
 
                             <div class="form-row mb-2">
                                 <div class="col-md-12 text-center">
-                                    <button type="button" class="btn btn-primary">
-                                        <a href="{{ route('register') }}">{{ __('Sign Up Now') }}</a>
-                                    </button>
+                                    <a type="button" class="btn btn-primary" href="{{ route('register') }}">{{ __('Sign Up Now') }}</a>
                                 </div>
                             </div>
                         </form>
