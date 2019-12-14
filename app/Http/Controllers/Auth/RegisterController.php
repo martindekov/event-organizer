@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Address;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,7 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'between:8,255', 'confirmed'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
@@ -72,6 +72,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('success', 'You have successfully created an account please verify you email to access more options!');
+
         $address = Address::create([
             'country' => $data['country'],
             'city' => $data['city'],

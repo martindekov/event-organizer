@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="email">{{ __('E-Mail Address') }}</label>
+                                <label for="email">{{ __('Email address') }}</label>
 
                                 <div>
                                     <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -72,10 +72,10 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                                <label for="password-confirm">{{ __('Confirm password') }}</label>
 
                                 <div>
-                                    <input id="password-confirm" type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="form-control" placeholder="Confirm password" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
                         </div>
@@ -116,11 +116,10 @@
 
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
-                                <label for="country">Coutry</label>
+                                <label for="country">Country</label>
 
-                                <!-- Murzi me da go pravq s php i jquery -->
                                 <select name="country" class="custom-select" id="country" required>
-                                    <option value="" disabled selected hidden>Select Country</option>
+                                    <option value="" disabled selected hidden>Select country</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>
@@ -384,7 +383,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <label for="zip">{{ __('zip') }}</label>
+                                <label for="zip">{{ __('Zip') }}</label>
 
                                 <div>
                                     <input id="zip" type="number" class="form-control @error('zip') is-invalid @enderror" placeholder="zip" name="zip" value="{{ old('zip') }}" autocomplete="zip" autofocus>
@@ -403,7 +402,7 @@
                                 <label for="line_1">{{ __('Line 1') }}</label>
 
                                 <div>
-                                    <input id="line_1" type="text" class="form-control @error('line_1') is-invalid @enderror" placeholder="Address line *" name="line_1" value="{{ old('line_1') }}" required autocomplete="line_1" autofocus>
+                                    <input id="line_1" type="text" class="form-control @error('line_1') is-invalid @enderror" placeholder="Address line" name="line_1" value="{{ old('line_1') }}" required autocomplete="line_1" autofocus>
 
                                     @error('line_1')
                                     <span class="invalid-feedback" role="alert">
@@ -432,7 +431,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-lg btn-primary">
                                     {{ __('Sign Up') }}
                                 </button>
                             </div>

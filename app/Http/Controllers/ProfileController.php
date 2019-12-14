@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     public function index($user)
     {
         $user = User::findOrFail($user);
+        $this->middleware(['auth' => 'verified']);
         return view('profile.profile', compact('user'));
     }
 
     public function edit()
     {
         if (Auth::user()) {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = User::findOrFail(Auth::user()->username);
 
             return view('profile.edit')->withUser($user);
         } else {
@@ -24,26 +29,63 @@ class ProfileController extends Controller
         }
     }
 
-    public function update(User $user)
+    public function update(Request $request, User $user)
     {
-        $userData = request()->validate([
-            'username' => 'required|unique:users,username,' . $user->id,
-            'email' => 'required|unique:users,email,' . $user->id,
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-        ]);
+        //Updates user info
+        if ($request->has('update_profile')) {
 
-        $addressData = request()->validate([
-            'country' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'zip' => 'nullable|integer|max:9999',
-            'line_1' => 'required|string|max:255',
-            'line_2' => 'nullable|string|max:255',
-        ]);
+            $userData = request()->validate([
+                'username' => 'required|string|max:255', Rule::unique('users')->ignore($user->id),
+                'email' => 'required|email|max:255', Rule::unique('users')->ignore($user->id),
+                'firstname' => 'required|string|max:255',
+                'lastname' => 'required|string|max:255',
+            ]);
 
-        auth()->user()->update($userData);
-        auth()->user()->address->update($addressData);
+            $addressData = request()->validate([
+                'country' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'zip' => 'nullable|integer|max:9999',
+                'line_1' => 'required|string|max:255',
+                'line_2' => 'nullable|string|max:255',
+            ]);
 
-        return redirect("/profile/{$user->id}")->with('success','You have successfully updated you profile.');
+            auth()->user()->update($userData);
+            auth()->user()->address->update($addressData);
+
+            return back()->with('success', 'You have successfully updated you profile!');
+        }
+
+        //Updates user image NOT WORIKING!!!
+        if ($request->has('update_image_profile')) {
+
+            $userImage = request()->validate([
+                'image' => ' ',
+            ]);
+
+            $image_path = $request->file('image')->store('profile', 'public');
+           // $destination = 'images/Foldername'.'/';
+            $filename = time() . "." . $image_path->getClientOriginalExtension();
+            Image::make($image_path)->resize(300, 300)->save(public_path('/storage/public/' . $filename ));
+            //$image = Image::make(public_path("storage/{$image_path}"))->fit(1000, 1000);
+
+            auth()->user()->update($userImage);
+            return back()->with('success', 'You have successfully updated you profile image!');
+        }
+
+        //Updates user password
+        if ($request->has('update_password')) {
+
+            $userPassword = request()->validate([
+                'password' => 'required|string|between:8,255',
+                'new_password' => 'required|string|confirmed|between:8,255|different:password',
+            ]);
+
+            if (!Hash::check($userPassword['password'], auth()->user()->password)) {
+                return back()->with('error', 'You have entered wrong password');
+            } else {
+                auth()->user()->update(["password" => Hash::make($userPassword['new_password'])]);
+                return back()->with('success', 'Password changed successfully!');
+            }
+        }
     }
 }

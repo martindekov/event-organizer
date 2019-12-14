@@ -27,13 +27,13 @@
             <div class="container">
                 @guest
                 @if (Route::has('register'))
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    @yield('title')
+                <a class="navbar-brand" href="{{ route('login') }}">
+                    EventO
                 </a>
                 @endif
                 @else
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    @yield('title')
+                    EventO
                 </a>
                 @endguest
 
@@ -48,18 +48,18 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto nav-pills">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home')}}">{{ __('Events') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'home' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/about')}}">{{ __('About') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'about' ? 'active text-white' : null }}" href="{{ url('about') }}">{{ __('About') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contact')}}">{{ __('Contacts') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'contact' ? 'active text-white' : null }}" href="{{ url('contact') }}">{{ __('Contacts') }}</a>
                         </li>
 
                         <!-- Authentication Links -->
@@ -69,10 +69,10 @@
 
                         @elseif (Request::path() != 'login' && Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endif
 
@@ -119,8 +119,14 @@
 
             <div class="container">
                 @if(Session::has('success'))
-                <div class="alert alert-success text-center">
+                <div class="alert alert-success text-center" role="alert">
                     {{ Session::get('success') }}
+                </div>
+                @endif
+
+                @if(Session::has('error'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ Session::get('error') }}
                 </div>
                 @endif
             </div>
