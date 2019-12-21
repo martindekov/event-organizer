@@ -7,11 +7,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-
                 <div class="row text-center">
                     <div class="col-md-3 p-5">
-                        <!-- we don't provide image for now so it will throw exception -->
-                        {{-- <img src="{{ url($user->image) }}" class="rounded-circle w-70"> --}}
+                        <!-- it should work now -->
+                        <img src="{{ url($user->image) }}" style="width:120px; height:120px;" class="rounded-circle w-70">
                     </div>
                     <div class="col-md-9 align-self-center">
                         <h2>{{ $user['username'] }}</h2>
@@ -22,15 +21,15 @@
                     <div class="text-center col-md-3">
                         <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#profileModal">
-                                Edit prifile
+                                Edit profile
                             </button>
                         </div>
-                        <!-- Once we add image configuration we can uncomment this one -->
-                        <!-- <div>
+
+                        <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#imageModal">
-                                Change picture :not_working
+                                Change picture
                             </button>
-                        </div> -->
+                        </div>
 
                         <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#passwordModal">
