@@ -27,7 +27,7 @@
 
                         <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#imageModal">
-                                Change picture :not_working
+                                Change picture
                             </button>
                         </div>
 
