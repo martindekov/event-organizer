@@ -89,6 +89,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
+            'image' => null, # Can be changed once we add logic
+            'organizer' => ($data['organizer'] == 'true' ? true : false),
         ]);
     }
 }
