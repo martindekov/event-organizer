@@ -61,3 +61,13 @@ a:hover {
         float: right;
     }
 }
+
+.dropdown-menu {
+    margin-top: 0;
+}
+
+.nav-item.dropdown:hover {
+    .dropdown-menu {
+        display: block;
+    }
+}

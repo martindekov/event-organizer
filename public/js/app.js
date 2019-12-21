@@ -59899,13 +59899,26 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  $(".dropdown").hover(function (ev) {
-    $(this).children(".dropdown-menu").finish().slideDown("medium");
-  }, function (ev) {
-    $(this).children(".dropdown-menu").finish().slideUp("slow");
-  });
-});
+// $(document).ready(function () {
+//     $(".dropdown").hover(
+//         function (ev) {
+//             if ($(this).children(".dropdown-menu.opened").length == 0) {
+//                 $(this)
+//                     .children(".dropdown-menu")
+//                     .slideDown("medium")
+//                     .addClass("opened");
+//             }
+//         },
+//         function (ev) {
+//             if ($(this).children(".dropdown-menu.opened").length > 0) {
+//                 $(this)
+//                     .children(".dropdown-menu")
+//                     .slideUp("slow")
+//                     .removeClass("opened");
+//             }
+//         }
+//     );
+// });
 
 /***/ }),
 
@@ -59927,8 +59940,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\NBU\event-organizer\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\NBU\event-organizer\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\event-organizerr\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\event-organizerr\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
