@@ -7,7 +7,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
+#
+# Down the line we might want to remove the
+# the commented out implements MustVerifyEmail
+# and CanResetPassword. For making this work
+# this functionality is not essential
+#
+
+class User extends Authenticatable # implements MustVerifyEmail, CanResetPassword
 {
     use Notifiable;
     

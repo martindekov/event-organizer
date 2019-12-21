@@ -10,8 +10,8 @@
 
                 <div class="row text-center">
                     <div class="col-md-3 p-5">
-                        <!-- ne raboti poradi nqkakva prichina -->
-                        <img src="{{ url($user->image) }}" class="rounded-circle w-70">
+                        <!-- we don't provide image for now so it will throw exception -->
+                        {{-- <img src="{{ url($user->image) }}" class="rounded-circle w-70"> --}}
                     </div>
                     <div class="col-md-9 align-self-center">
                         <h2>{{ $user['username'] }}</h2>
@@ -25,12 +25,12 @@
                                 Edit prifile
                             </button>
                         </div>
-
-                        <div>
+                        <!-- Once we add image configuration we can uncomment this one -->
+                        <!-- <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#imageModal">
                                 Change picture :not_working
                             </button>
-                        </div>
+                        </div> -->
 
                         <div>
                             <button type="button" class="btn mb-2 btn-primary btn-block" data-toggle="modal" data-target="#passwordModal">
