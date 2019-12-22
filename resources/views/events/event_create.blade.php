@@ -55,9 +55,11 @@
 
                             <select name="organizer" class="custom-select mb-3" id="organizer" required>
                                 <!-- Foreach user with organizer == true -->
-                                <option value="organizer_id_x">Organizer_1</option>
-                                <option value="organizer_id_x+1">Organizer_2</option>
-                                <option value="organizer_id_x+2">Organizer_3</option>
+                                @foreach ($users as $user)
+                                    @if ($user->organizer == 1)
+                                        <option value="{{ $user->username }}">{{ $user->username }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                 <div class="form-group row mb-3">
