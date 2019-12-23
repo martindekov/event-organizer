@@ -15,23 +15,26 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8">
-                    <div id="calendar"></div>
-                </div>
-
-                <div class="col-md-4 align-self-center">
-                    <!-- Tuk shte slojim denq ot kalendara -->
-                    <div class="text-center">
-                        <h4>Date of calendar</h4>
+                @if (auth()->user())
+                    <div class="col-md-8">
+                        <div id="calendar"></div>
                     </div>
-
-                    <div class="form-group row mb-3">
-                        <div class="col-md-12 text-center">
-                            <a href="{{ route('event.create') }}" class="btn btn-lg btn-primary">Create event</a>
+                    <div class="col-md-4 align-self-center">
+                        <!-- Tuk shte slojim denq ot kalendara -->
+                        <div class="text-center">
+                            <h4>Date of calendar</h4>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <div class="col-md-12 text-center">
+                                <a href="{{ route('event.create') }}" class="btn btn-lg btn-primary">Create event</a>
+                            </div>
                         </div>
                     </div>
-
-                </div>
+                @else
+                    <div class="col-md-12">
+                        <div id="calendar"></div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

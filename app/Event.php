@@ -8,10 +8,16 @@ class Event extends Model
 {
     protected $guarded = [];
 
-    public function address()
-    { 
-        return $this->belongsTo(Address::class, 'address_id');
-    }
+    protected $table = 'events';
+
+    protected $fillable = [
+        'address', 'client' , 'name', 'description', 'organizer', 'approved',
+    ];
+    
+    //public function address()
+    //{ 
+    //    return $this->has(Address::class, 'address_id');
+    //}
 
     //public function eventType()
     //{ 
@@ -22,5 +28,4 @@ class Event extends Model
     //{ 
     //    return $this->belongsTo(MenuType::class, 'menu_type_id');
     //}
-
 }
