@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return Event::all();
     }
 
     /**
@@ -44,8 +44,8 @@ class EventController extends Controller
     public function store(Request $request)
     {
         Session::flash('success', 'You have successfully created an event request please wait for response from the organizer!');
-        
-        Event::create([
+
+        $event = Event::create([
             'address' =>  $request['event_address'],
             'organizer' => $request['organizer'],
             'client' => Auth::user()->username,
@@ -53,7 +53,13 @@ class EventController extends Controller
             'description' => $request['event_description'],
             'approved' => false,
         ]);
+
+        $organizer_user = User::all()->where('username',$request['organizer'])->first();
+        $this->save_organizer_event($organizer_user, $event);
         
+        $client_user = User::all()->where('username',Auth::user()->username)->first();
+        $this->save_client_event($client_user,$event);
+
         return redirect()->back();
     }
 
@@ -100,5 +106,30 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function save_organizer_event($user,$event)
+    {
+        if ($user->event_organizer == null){
+            $user->event_organizer = json_encode(array($event->id));
+        }else{
+            $array_events = json_decode($user->event_organizer,true);
+            array_push($array_events,$event->id);
+            $user->event_organizer = json_encode($array_events);
+        }
+        $user->save();
+    }
+    
+
+    private function save_client_event($user,$event)
+    {
+        if ($user->event_client == null){
+            $user->event_client = json_encode(array($event->id));
+        }else{
+            $array_events = json_decode($user->event_client,true);
+            array_push($array_events,$event->id);
+            $user->event_client = json_encode($array_events);
+        }
+        $user->save();
     }
 }
