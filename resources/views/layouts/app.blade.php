@@ -86,19 +86,19 @@
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
-                                    {{ __('My upcoming events') }}
+                                    {{ __('My events') }}
                                 </a>
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
-                                    <a class="dropdown-item" href="#">{{ __('approved') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.approved') }}">{{ __('Approved') }}</a>
 
-                                    <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.waiting') }}">{{ __('Waiting for approvals') }}</a>
+
+                                    <a class="dropdown-item" href="{{ route('event.create') }}">{{ __('Request Event') }}</a>
 
                                 </div>
 
-                                <a class="dropdown-item" href="#">{{ __('My event requests') }}</a>
-
-                                <a class="dropdown-item" href="#">{{ __('My ratings') }}</a>
+                                <!-- <a class="dropdown-item" href="#">{{ __('My ratings') }}</a> -->
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"> {{ __('Log out') }}
