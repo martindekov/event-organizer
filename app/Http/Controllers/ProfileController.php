@@ -54,14 +54,26 @@ class ProfileController extends Controller
 
             return back()->with('success', 'You have successfully updated you profile!');
         }
-
-        //Updates user image NOT WORIKING!!!
+        
+        //update profile picture
         if ($request->has('update_image_profile')) {
 
             $image_path = $request->file('image');
             $filename = time() . "." . $image_path->getClientOriginalExtension();
             Image::make($image_path)->save(public_path('' . $filename));
 
+            $userImage = request()->validate([
+                'image' => '',
+            ]);
+
+            $image_path = $request->file('image');//->store('profile', 'public');
+           // $destination = 'images/Foldername'.'/';
+            $filename = time() . "." . $image_path->getClientOriginalExtension();
+            //Image::make($image_path)->resize(300, 300)->save(public_path('' . $filename ));
+            //$image = Image::make(public_path("storage/{$image_path}"))->fit(1000, 1000);
+            Image::make($image_path)->save(public_path('' . $filename));
+
+            //auth()->user()->update($userImage);
             $user=Auth::user();
             $user->image=$filename;
             $user->save();

@@ -19,10 +19,10 @@
                         <div class="form-row">
                             <div class="font-weight-bold pb-1 mb-2">{{ __('Create your account') }}</div>
 
-                            <select name="role" class="custom-select mb-3" id="role" required>
+                            <select name="organizer" class="custom-select mb-3" id="organizer" required>
                                 <option value="" disabled selected hidden>Account Type</option>
-                                <option value="Client">Client</option>
-                                <option value="Organizer">Organizer</option>
+                                <option value="false">Client</option>
+                                <option value="true">Organizer</option>
                             </select>
                         </div>
 
