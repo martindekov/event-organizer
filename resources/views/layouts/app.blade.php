@@ -65,12 +65,14 @@
                         <!-- Authentication Links -->
                         @guest
 
-                        @if (Request::path() == 'login' || Route::has('register'))
+                        @if (Request::path() == 'login')
+
+                        @elseif (Request::path() != 'login' && Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Sign in') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign up') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endif
 
@@ -84,7 +86,7 @@
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
-                                    {{ __('My events') }} 
+                                    {{ __('My events') }}
                                 </a>
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 

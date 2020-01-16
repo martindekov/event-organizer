@@ -62,7 +62,7 @@
 
                             <div class="form-row mb-2">
                                 <div class="col-md-12 text-center">
-                                    <label for="country">Don't have an account?</label>
+                                    <label for="country">Dont have an account?</label>
                                 </div>
                             </div>
 

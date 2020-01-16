@@ -10,7 +10,7 @@
                 <div class="col-md-10">
 
                     <div class="text-center pt-3 pb-2 mb-2">
-                        <h1>{{ __('Fill in the registration form to proceed to EventO') }}</h1>
+                        <h1>{{ __('Fill in the registration form to proceed to Evento') }}</h1>
                     </div>
 
                     <form method="POST" action="{{ route('register') }}">
@@ -20,7 +20,7 @@
                             <div class="font-weight-bold pb-1 mb-2">{{ __('Create your account') }}</div>
 
                             <select name="organizer" class="custom-select mb-3" id="organizer" required>
-                                <option value="" disabled selected hidden>Account type</option>
+                                <option value="" disabled selected hidden>Account Type</option>
                                 <option value="false">Client</option>
                                 <option value="true">Organizer</option>
                             </select>
@@ -99,7 +99,7 @@
                                 <label for="lastname">{{ __('Last name') }}</label>
 
                                 <div>
-                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Last name" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="First name" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                     @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -386,7 +386,7 @@
                                 <label for="zip">{{ __('Zip') }}</label>
 
                                 <div>
-                                    <input id="zip" type="number" class="form-control @error('zip') is-invalid @enderror" placeholder="Zip" name="zip" value="{{ old('zip') }}" autocomplete="zip" autofocus>
+                                    <input id="zip" type="number" class="form-control @error('zip') is-invalid @enderror" placeholder="zip" name="zip" value="{{ old('zip') }}" autocomplete="zip" autofocus>
 
                                     @error('zip')
                                     <span class="invalid-feedback" role="alert">
@@ -402,7 +402,7 @@
                                 <label for="line_1">{{ __('Line 1') }}</label>
 
                                 <div>
-                                    <input id="line_1" type="text" class="form-control @error('line_1') is-invalid @enderror" placeholder="Address line 1" name="line_1" value="{{ old('line_1') }}" required autocomplete="line_1" autofocus>
+                                    <input id="line_1" type="text" class="form-control @error('line_1') is-invalid @enderror" placeholder="Address line" name="line_1" value="{{ old('line_1') }}" required autocomplete="line_1" autofocus>
 
                                     @error('line_1')
                                     <span class="invalid-feedback" role="alert">

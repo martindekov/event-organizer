@@ -18,8 +18,6 @@ class CreateEventsTable extends Migration
             $table->string('address');
             $table->string('client');
             $table->string('name');
-            $table->datetime('start_date');
-            $table->datetime('end_date');
             $table->string('description');
             $table->string('organizer');
             $table->boolean('approved');
