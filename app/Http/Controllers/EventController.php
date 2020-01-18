@@ -33,6 +33,9 @@ class EventController extends Controller
         $events = array();
             if (Auth::user()->organizer){
             $event_ids = json_decode(Auth::user()->event_organizer);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -44,6 +47,9 @@ class EventController extends Controller
             }
         }else{
             $event_ids = json_decode(Auth::user()->event_client);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -62,7 +68,10 @@ class EventController extends Controller
         $events = array();
             if (Auth::user()->organizer){
             $event_ids = json_decode(Auth::user()->event_organizer);
-            //return $event_ids;
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
+            return $event_ids;
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -74,6 +83,9 @@ class EventController extends Controller
             }
         }else{
             $event_ids = json_decode(Auth::user()->event_client);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
