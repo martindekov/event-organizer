@@ -31,8 +31,11 @@ class EventController extends Controller
     public function approved()
     {
         $events = array();
-        if (Auth::user()->organizer){
+            if (Auth::user()->organizer){
             $event_ids = json_decode(Auth::user()->event_organizer);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -44,6 +47,9 @@ class EventController extends Controller
             }
         }else{
             $event_ids = json_decode(Auth::user()->event_client);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -60,9 +66,12 @@ class EventController extends Controller
     public function waiting()
     {
         $events = array();
-        if (Auth::user()->organizer){
+            if (Auth::user()->organizer){
             $event_ids = json_decode(Auth::user()->event_organizer);
-            //return $event_ids;
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
+            return $event_ids;
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -74,6 +83,9 @@ class EventController extends Controller
             }
         }else{
             $event_ids = json_decode(Auth::user()->event_client);
+            if ($event_ids == null){
+                return view('profile.waiting')->with('events', null);
+            }
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
@@ -115,6 +127,8 @@ class EventController extends Controller
         $event = Event::create([
             'address' =>  $request['event_address'],
             'organizer' => $request['organizer'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date'],
             'client' => Auth::user()->username,
             'name' => $request['event_name'],
             'description' => $request['event_description'],
