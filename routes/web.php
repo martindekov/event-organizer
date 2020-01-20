@@ -26,9 +26,7 @@ Route::get('/about', 'AboutController@index')->name('about');
 //For events
 Route::get('/event/create', 'EventController@create')->name('event.create');
 Route::post('/event/create', 'EventController@store')->name('event.create');
-Route::get('/events/approved', 'EventController@approved')->name('profile.approved');
-Route::get('/events/waiting', 'EventController@waiting')->name('profile.waiting');
-Route::get('/events/approve/{id}', 'EventController@approve')->name('event.approve');
+Route::post('/event', 'EventController@store')->name('event.store');
 
 //For contact
 Route::get('/contact', 'ContactController@create')->name('contact.create');

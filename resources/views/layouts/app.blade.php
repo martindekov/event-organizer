@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto nav-pills">
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'home' || '/' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'home' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -65,12 +65,14 @@
                         <!-- Authentication Links -->
                         @guest
 
-                        @if (Request::path() == 'login' || Route::has('register'))
+                        @if (Request::path() == 'login')
+
+                        @elseif (Request::path() != 'login' && Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Sign in') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign up') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endif
 
@@ -83,19 +85,16 @@
 
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
-
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
-                                    {{ __('My events ') }} &#x21B7;
-                                </a> 
-
-                                
+                                    {{ __('My events') }}
+                                </a>
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
-                                    <a class="dropdown-item" href="{{ route('profile.approved') }}">&emsp;{{ __('Approved') }}</a>
+                                    <a class="dropdown-item" href="#">{{ __('Approved') }}</a>
 
-                                    <a class="dropdown-item" href="{{ route('profile.waiting') }}">&emsp;{{ __('Waiting for approvals') }}</a>
+                                    <a class="dropdown-item" href="#">{{ __('Waiting for approvals') }}</a>
 
-                                    <a class="dropdown-item" href="{{ route('event.create') }}">&emsp;{{ __('My event requests') }}</a>
+                                    <a class="dropdown-item" href="{{ route('event.create') }}">{{ __('Request Event') }}</a>
 
                                 </div>
 

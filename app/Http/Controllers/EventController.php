@@ -17,74 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        return view('profile.approved')->with('events', $events);
-    }
-
-    public function approve($id){
-        $event = Event::all()->where('id',$id)->first();
-        $event->approved = true;
-        $event->save();
-        return redirect()->back(); 
-    }
-
-    public function approved()
-    {
-        $events = array();
-            if (Auth::user()->organizer){
-            $event_ids = json_decode(Auth::user()->event_organizer);
-            foreach($event_ids as $event_id){
-                $the_event = Event::all()
-                ->where('id','=',$event_id)
-                ->where('approved','=',true)
-                ->first();
-                if($the_event!=null){
-                    array_push($events, $the_event);
-                }
-            }
-        }else{
-            $event_ids = json_decode(Auth::user()->event_client);
-            foreach($event_ids as $event_id){
-                $the_event = Event::all()
-                ->where('id','=',$event_id)
-                ->where('approved','=',true)
-                ->first();
-                if($the_event!=null){
-                    array_push($events, $the_event);
-                }
-            }
-        }
-        return view('profile.approved')->with('events', $events);
-    }
-
-    public function waiting()
-    {
-        $events = array();
-            if (Auth::user()->organizer){
-            $event_ids = json_decode(Auth::user()->event_organizer);
-            //return $event_ids;
-            foreach($event_ids as $event_id){
-                $the_event = Event::all()
-                ->where('id','=',$event_id)
-                ->where('approved','=',false)
-                ->first();
-                if($the_event!=null){
-                    array_push($events, $the_event);
-                }
-            }
-        }else{
-            $event_ids = json_decode(Auth::user()->event_client);
-            foreach($event_ids as $event_id){
-                $the_event = Event::all()
-                ->where('id','=',$event_id)
-                ->where('approved','=',false)
-                ->first();
-                if($the_event!=null){
-                    array_push($events, $the_event);
-                }
-            }
-        }
-        return view('profile.waiting')->with('events', $events);
+        return Event::all();
     }
 
     /**
@@ -95,7 +28,7 @@ class EventController extends Controller
     public function create()
     {
         if (Auth::user()) {
-            $users = User::all()->where('organizer', true);
+            $users = User::all();
             return view('events.create')->with('users', $users);
         }else{
             return redirect()->back();
@@ -115,8 +48,6 @@ class EventController extends Controller
         $event = Event::create([
             'address' =>  $request['event_address'],
             'organizer' => $request['organizer'],
-            'start_date' => $request['start_date'],
-            'end_date' => $request['end_date'],
             'client' => Auth::user()->username,
             'name' => $request['event_name'],
             'description' => $request['event_description'],
@@ -125,7 +56,7 @@ class EventController extends Controller
 
         $organizer_user = User::all()->where('username',$request['organizer'])->first();
         $this->save_organizer_event($organizer_user, $event);
-
+        
         $client_user = User::all()->where('username',Auth::user()->username)->first();
         $this->save_client_event($client_user,$event);
 

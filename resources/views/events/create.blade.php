@@ -3,7 +3,6 @@
 @section('title', 'Create Event')
 
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -26,20 +25,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                <label for="start_date">{{ __('Start date') }}</label>
-                                <div>                  
-                                    <input id="start_date" type="datetime-local" class="date form-control @error('start_date') is-invalid @enderror"  placeholder="Start date" name="start_date" required autocomplete="start_date" autofocus>                                  
-                                </div>
-                            </div>
-                    <div class="col-md-6 mb-3">
-                            <label for="end_date">{{ __('End date') }}</label>
-                                <div>
-                                    <input id="end_date" type="datetime-local" class="date form-control @error('end_date') is-invalid @enderror"  placeholder="End date" name="end_date"  required autocomplete="end_date" autofocus>
-                                </div>
-                            </div>
-                        </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                         <label for="event_address">{{ __('Event Address') }}</label>
@@ -71,7 +56,9 @@
                     <select name="organizer" class="custom-select mb-3" id="organizer" required>
                         <!-- Foreach user with organizer == true -->
                         @foreach ($users as $user)
-                            <option value="{{ $user->username }}">{{ $user->username }}</option>
+                            @if ($user->organizer == 1)
+                                <option value="{{ $user->username }}">{{ $user->username }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
