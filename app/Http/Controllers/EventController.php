@@ -71,7 +71,6 @@ class EventController extends Controller
             if ($event_ids == null){
                 return view('profile.waiting')->with('events', null);
             }
-            return $event_ids;
             foreach($event_ids as $event_id){
                 $the_event = Event::all()
                 ->where('id','=',$event_id)
