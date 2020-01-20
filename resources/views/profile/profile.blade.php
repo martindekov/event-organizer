@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="row text-center">
                     <div class="col-md-3 p-5">
-                        <!-- it should work now -->
+                        <!-- ne raboti poradi nqkakva prichina -->
                         <img src="{{ url($user->image) }}" style="width:120px; height:120px;" class="rounded-circle w-70">
                     </div>
                     <div class="col-md-9 align-self-center">
