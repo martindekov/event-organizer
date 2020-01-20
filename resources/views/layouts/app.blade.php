@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto nav-pills">
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'home' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'home' || '/' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -83,16 +83,19 @@
 
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
+
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
-                                    {{ __('My events') }} 
-                                </a>
+                                    {{ __('My events ') }} &#x21B7;
+                                </a> 
+
+                                
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
-                                    <a class="dropdown-item" href="{{ route('profile.approved') }}">{{ __('Approved') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.approved') }}">&emsp;{{ __('Approved') }}</a>
 
-                                    <a class="dropdown-item" href="{{ route('profile.waiting') }}">{{ __('Waiting for approvals') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.waiting') }}">&emsp;{{ __('Waiting for approvals') }}</a>
 
-                                    <a class="dropdown-item" href="{{ route('event.create') }}">{{ __('Request Event') }}</a>
+                                    <a class="dropdown-item" href="{{ route('event.create') }}">&emsp;{{ __('My event requests') }}</a>
 
                                 </div>
 
