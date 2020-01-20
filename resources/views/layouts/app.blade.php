@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto nav-pills">
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'home' || '/' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
+                            <a class="nav-link {{ (Request::segment(1) == 'home') || (Request::segment(1) == '') ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
