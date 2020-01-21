@@ -59806,19 +59806,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var calendarEl = document.getElementById("calendar");
-  var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
-    height: 650,
-    plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], 'bootstrap'],
-    defaultView: "dayGridMonth",
-    themeSystem: "bootstrap",
-    header: {
-      left: 'prev',
-      center: 'title',
-      right: 'next'
+  var host = window.location.host;
+  var xhr = new XMLHttpRequest();
+  var approvedEvents = [];
+
+  xhr.onreadystatechange = function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log();
+        var response = JSON.parse(xhr.responseText);
+
+        for (var i = 0; i < response.length; i++) {
+          var obj = response[i];
+          var singleEvent = {
+            'title': obj.name,
+            'start': obj.start_date,
+            'end': obj.end_date
+          };
+          approvedEvents.push(singleEvent);
+        }
+
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
+          height: 650,
+          plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], 'bootstrap'],
+          defaultView: "dayGridMonth",
+          themeSystem: "bootstrap",
+          events: approvedEvents,
+          header: {
+            left: 'prev',
+            center: 'title',
+            right: 'next'
+          }
+        });
+        console.log(calendar);
+        calendar.render();
+      }
     }
-  });
-  calendar.render();
+  };
+
+  xhr.open('get', "http://" + host + "/events/list", true);
+  xhr.send();
 });
 
 /***/ }),
@@ -59940,8 +59968,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\event-organizerr\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\event-organizerr\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/mdekov/go/src/github.com/martindekov/event-organizer/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/mdekov/go/src/github.com/martindekov/event-organizer/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
