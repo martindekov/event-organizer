@@ -58,10 +58,6 @@ class ProfileController extends Controller
         //update profile picture
         if ($request->has('update_image_profile')) {
 
-            $image_path = $request->file('image');
-            $filename = time() . "." . $image_path->getClientOriginalExtension();
-            Image::make($image_path)->save(public_path('' . $filename));
-
             $userImage = request()->validate([
                 'image' => '',
             ]);

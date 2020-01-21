@@ -6,19 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $guarded = [];
+    //protected $fillable = [
+    //  'user_id', 'event_id', 'comment'
+    //];
+
     protected $table = 'comments';
 
     protected $primaryKey = 'id';
 
     public $timestamps = true;
 
-    public function event(){
-        return $this->belongsTo('App\Event');
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
     }
 
-    /** Will belong to user as above
-     * public function user(){
-     *     return $this->belongsTo('App\User');
-     * }
-     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

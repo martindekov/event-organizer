@@ -20,9 +20,13 @@ class User extends Authenticatable # implements MustVerifyEmail, CanResetPasswor
     
     public function address()
     { 
-        return $this->belongsTo(Address::class, 'address_id');
+        return $this->hasOne(Address::class, 'address_id');
     }
 
+    public function comments()
+    { 
+        return $this->hasMant(Comment::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

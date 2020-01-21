@@ -14,9 +14,14 @@ class Event extends Model
         'address', 'client' , 'name', 'start_date', 'end_date' , 'description', 'organizer', 'approved',
     ];
     
+    public function comments()
+    { 
+        return $this->hasMant(Comment::class);
+    }
+    
     //public function address()
     //{ 
-    //    return $this->has(Address::class, 'address_id');
+    //    return $this->hasOnew(Address::class, 'address_id');
     //}
 
     //public function eventType()
