@@ -24,6 +24,7 @@ Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.updat
 Route::get('/about', 'AboutController@index')->name('about');
 
 //For events
+Route::get('/events/list','EventController@list');
 Route::get('/event/create', 'EventController@create')->name('event.create');
 Route::post('/event/create', 'EventController@store')->name('event.create');
 Route::get('/events/approved', 'EventController@approved')->name('profile.approved');

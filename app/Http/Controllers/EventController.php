@@ -28,6 +28,12 @@ class EventController extends Controller
         return redirect()->back(); 
     }
 
+    public function list()
+    {
+        $events = Event::all()->where('approved','=',true);
+        return $events;
+    }
+
     public function approved()
     {
         $events = array();
