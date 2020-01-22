@@ -19,7 +19,7 @@
                 <div class="border col-md-6">
                     <div class="container p-3">
                         <p>Event name: {{ $event->name }}</p>
-                        <p>Event type: </p>
+                        <p>Event type: {{ $event->public ? "Public" : "Private"}}</p>
                         <p>Organizer: {{ $event->organizer }}</p>
                         <p>Date: {{ date( 'F j, Y, H:i', strtotime($event->start_date)) }} </p>
                         <p>Number of people: </p>

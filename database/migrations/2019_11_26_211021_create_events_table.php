@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->string('description');
             $table->string('organizer');
             $table->boolean('approved');
+            $table->boolean('public');
             $table->timestamps();
         });
     }

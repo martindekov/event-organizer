@@ -75,6 +75,14 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-row">
+                    <div class="font-weight-bold pb-1 mb-2">{{ __('Event Type') }}</div>
+                    <select name="public" class="custom-select mb-3" id="public" required>
+                        <!-- Foreach user with organizer == true -->
+                        <option value="true">Public</option>
+                        <option value="false">Private</option>
+                    </select>
+                </div>
                 <div class="form-group row mb-3">
                     <div class="col-md-12 text-center">
                         <button type="submit" class="btn btn-lg btn-primary">

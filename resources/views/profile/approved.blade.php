@@ -7,14 +7,19 @@
         </div>
         @else
         @foreach ($events as $event)  
-        <div class="jumbotron">
+            <div class="jumbotron">
                 <div class="container">
-                    <h1 class="display-4">{{$event->name}}</h1>
+                <h1 class="display-4">{{$event->name}}</h1>
                     <p class="lead">{{$event->description}}</p>
                     <p> {{$event->start_date}} </p>
                     <p> {{$event->end_date}}  </p>
-                </div> 
-        </div>
+                    <div class="btn-toolbar mb-3" role="toolbar">
+                        <div class="btn-group mr-4" role="group">
+                            <a href="{{url("/events/show/$event->id")}}"><button type="button" class="btn btn-primary">View</button></a>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
         @endforeach
         @endif
     </div>

@@ -30,7 +30,10 @@ class EventController extends Controller
 
     public function list()
     {
-        $events = Event::all()->where('approved','=',true);
+        $events = Event::all()
+        ->where('approved','=',true)
+        ->where('public','=',true);
+        
         return $events;
     }
 
@@ -128,7 +131,7 @@ class EventController extends Controller
     public function store(Request $request)
     {
         Session::flash('success', 'You have successfully created an event request please wait for response from the organizer!');
-
+        
         $event = Event::create([
             'address' =>  $request['event_address'],
             'organizer' => $request['organizer'],
@@ -136,6 +139,7 @@ class EventController extends Controller
             'end_date' => $request['end_date'],
             'client' => Auth::user()->username,
             'name' => $request['event_name'],
+            'public' => ($request['public'] == 'true' ? true : false),
             'description' => $request['event_description'],
             'approved' => false,
         ]);
