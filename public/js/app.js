@@ -59813,7 +59813,6 @@ document.addEventListener("DOMContentLoaded", function () {
   xhr.onreadystatechange = function (e) {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
-        console.log();
         var response = JSON.parse(xhr.responseText);
 
         for (var i = 0; i < response.length; i++) {
@@ -59821,7 +59820,8 @@ document.addEventListener("DOMContentLoaded", function () {
           var singleEvent = {
             'title': obj.name,
             'start': obj.start_date,
-            'end': obj.end_date
+            'end': obj.end_date,
+            'url': "http://" + host + "/events/show/" + obj.id
           };
           approvedEvents.push(singleEvent);
         }

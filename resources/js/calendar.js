@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     'title' : obj.name,
                     'start' : obj.start_date,
                     'end' : obj.end_date,
+                    'url' : "http://" + host + "/events/show/" + obj.id
                 };
                 approvedEvents.push(singleEvent);
             }
