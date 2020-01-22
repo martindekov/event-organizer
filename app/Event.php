@@ -14,9 +14,14 @@ class Event extends Model
         'address', 'client' , 'name', 'start_date', 'end_date' , 'description', 'organizer', 'approved',
     ];
     
+    public function eventImages()
+    {
+        return $this->hasMany(EventImage::class);
+    }
+
     public function comments()
     { 
-        return $this->hasMant(Comment::class);
+        return $this->hasMany(Comment::class);
     }
     
     //public function address()

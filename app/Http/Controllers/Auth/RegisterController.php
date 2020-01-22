@@ -74,17 +74,7 @@ class RegisterController extends Controller
     {
         Session::flash('success', 'You have successfully created an account please verify you email to access more options!');
 
-        $user = User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'organizer' => ($data['organizer'] == 'true' ? true : false),
-        ]);
-
-        Address::create([
-            'user_id' =>  $user->id,
+        $address = Address::create([
             'country' => $data['country'],
             'city' => $data['city'],
             'zip' => $data['zip'],
@@ -92,6 +82,14 @@ class RegisterController extends Controller
             'line_2' => $data['line_2'],
         ]);
 
-        return $user;
+        return User::create([
+            'address_id' =>  $address->id,
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'organizer' => ($data['organizer'] == 'true' ? true : false),
+        ]);
     }
 }

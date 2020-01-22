@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="col-md-3 mb-3">
-                        <div class="font-weight-bold pb-1">{{ __('Zip') }}</div>
+                        <div class="font-weight-bold pb-1">Zip</div>
 
                         @if ($user->address->zip == null)
                         <div>

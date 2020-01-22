@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./main');
 require('./navbar');
 require('./calendar');
 

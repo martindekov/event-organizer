@@ -59,7 +59,7 @@ class ProfileController extends Controller
         if ($request->has('update_image_profile')) {
 
             $userImage = request()->validate([
-                'image' => '',
+                'image' => 'image',
             ]);
 
             $image_path = $request->file('image');//->store('profile', 'public');

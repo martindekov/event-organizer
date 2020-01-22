@@ -17,16 +17,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable # implements MustVerifyEmail, CanResetPassword
 {
     use Notifiable;
-    
-    public function address()
-    { 
-        return $this->hasOne(Address::class, 'address_id');
-    }
 
-    public function comments()
-    { 
-        return $this->hasMant(Comment::class);
-    }
     /**
      * The attributes that are mass assignable.
      *
@@ -53,4 +44,14 @@ class User extends Authenticatable # implements MustVerifyEmail, CanResetPasswor
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

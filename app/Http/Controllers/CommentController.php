@@ -14,11 +14,6 @@ class CommentController extends Controller
             'comment' => 'min:5|max:500|required',
         ]);
 
-        //Comment::create([
-        //    'comment' =>  $validateData,
-        //    'user_id' => Auth::user()->id,
-        //   'event_id' => $event->id,
-        //]);
         $commentData = array_merge($validateData, ['user_id' => auth()->id()]);
         $event->comments()->create($commentData);
 

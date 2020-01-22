@@ -86,9 +86,9 @@
 
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
                                     {{ __('My events ') }} &#x21B7;
-                                </a> 
+                                </a>
 
-                                
+
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
                                     <a class="dropdown-item" href="{{ route('profile.approved') }}">&emsp;{{ __('Approved') }}</a>
@@ -122,11 +122,6 @@
                 @if(Session::has('success'))
                 <div class="alert alert-success text-center" role="alert">
                     {{ Session::get('success') }}
-                    <script>
-                        setTimeout(function() {
-                            $(".alert.alert-success").slideUp(1000);
-                        }, 5000);
-                    </script>
                 </div>
                 @endif
 

@@ -152,7 +152,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $comments = Comment::with('event')->latest()->paginate(7);
+        $comments = Comment::where('event_id', $event->id)->latest()->paginate(5);
         return view('events.show', compact('event', 'comments'));
     }
 
