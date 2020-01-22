@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto nav-pills">
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'home' ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
+                            <a class="nav-link {{ (Request::segment(1) == 'home') || (Request::segment(1) == '') ? 'active text-white' : null }}" href="{{ url('home') }}">{{ __('Events') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -65,14 +65,12 @@
                         <!-- Authentication Links -->
                         @guest
 
-                        @if (Request::path() == 'login')
-
-                        @elseif (Request::path() != 'login' && Route::has('register'))
+                        @if (Request::path() == 'login' || Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'login' ? 'active text-white' : null }}" href="{{ route('login') }}">{{ __('Sign in') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                            <a class="nav-link {{ Request::segment(1) === 'register' ? 'active text-white' : null }}" href="{{ route('register') }}">{{ __('Sign up') }}</a>
                         </li>
                         @endif
 
@@ -85,20 +83,23 @@
 
                                 <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->id)}}">{{ __('My profile') }}</a>
 
+
                                 <a class="sub-menu dropdown-item collapsed " href="#submenu" data-toggle="collapse" data-target="#submenu">
-                                    {{ __('My upcoming events') }}
+                                    {{ __('My events ') }} &#x21B7;
                                 </a>
+
+
                                 <div class="sub-item collapse" id="submenu" aria-expanded="false">
 
-                                    <a class="dropdown-item" href="#">{{ __('approved') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.approved') }}">&emsp;{{ __('Approved') }}</a>
 
-                                    <a class="dropdown-item" href="#">{{ __('waiting for approvals') }}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.waiting') }}">&emsp;{{ __('Waiting for approvals') }}</a>
+
+                                    <a class="dropdown-item" href="{{ route('event.create') }}">&emsp;{{ __('My event requests') }}</a>
 
                                 </div>
 
-                                <a class="dropdown-item" href="#">{{ __('My event requests') }}</a>
-
-                                <a class="dropdown-item" href="#">{{ __('My ratings') }}</a>
+                                <!-- <a class="dropdown-item" href="#">{{ __('My ratings') }}</a> -->
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"> {{ __('Log out') }}
@@ -121,11 +122,6 @@
                 @if(Session::has('success'))
                 <div class="alert alert-success text-center" role="alert">
                     {{ Session::get('success') }}
-                    <script>
-                        setTimeout(function() {
-                            $(".alert.alert-success").slideUp(1000);
-                        }, 5000);
-                    </script>
                 </div>
                 @endif
 

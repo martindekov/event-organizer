@@ -8,19 +8,34 @@ class Event extends Model
 {
     protected $guarded = [];
 
-    public function address()
-    { 
-        return $this->belongsTo(Address::class, 'address_id');
+    protected $table = 'events';
+
+    protected $fillable = [
+        'address', 'client' , 'name', 'start_date', 'end_date' , 'description', 'organizer', 'approved',
+    ];
+    
+    public function eventImages()
+    {
+        return $this->hasMany(EventImage::class);
     }
 
-    public function eventType()
+    public function comments()
     { 
-        return $this->belongsTo(EventType::class, 'event_type_id');
+        return $this->hasMany(Comment::class);
     }
+    
+    //public function address()
+    //{ 
+    //    return $this->hasOnew(Address::class, 'address_id');
+    //}
 
-    public function menuType()
-    { 
-        return $this->belongsTo(MenuType::class, 'menu_type_id');
-    }
+    //public function eventType()
+    //{ 
+    //    return $this->belongsTo(EventType::class, 'event_type_id');
+    //}
 
+    //public function menuType()
+    //{ 
+    //    return $this->belongsTo(MenuType::class, 'menu_type_id');
+    //}
 }
