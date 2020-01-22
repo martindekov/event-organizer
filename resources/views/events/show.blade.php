@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-
+            @if (!empty($comments))
             <div class="container pt-3">
                 <div class="card p-2">
                     <!-- Write a comment -->
@@ -80,7 +80,8 @@
                         {{ $comments->links() }}
                     </div>
                 </div>
-            </div>
+            </div>    
+            @endif
         </div>
     </div>
 </div>

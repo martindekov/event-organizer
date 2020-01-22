@@ -157,7 +157,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::all()->where('id',$id)->first();
+        return view('events.show')->with('event',$event)->with('comments',null);
     }
 
     /**
