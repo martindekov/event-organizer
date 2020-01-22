@@ -122,11 +122,6 @@
                 @if(Session::has('success'))
                 <div class="alert alert-success text-center" role="alert">
                     {{ Session::get('success') }}
-                    <script>
-                        setTimeout(function() {
-                            $(".alert.alert-success").slideUp(1000);
-                        }, 5000);
-                    </script>
                 </div>
                 @endif
 

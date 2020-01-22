@@ -17,10 +17,15 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable # implements MustVerifyEmail, CanResetPassword
 {
     use Notifiable;
-    
+
     public function address()
-    { 
+    {
         return $this->belongsTo(Address::class, 'address_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**
