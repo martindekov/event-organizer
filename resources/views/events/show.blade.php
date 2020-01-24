@@ -28,17 +28,21 @@
                             <p class="m-0 m-3">Description: {{ $event->description }} </p>
                     </div>
                 </div>
-                @forelse($event->eventImages as $eventImage)
-                <img class="rounded-circle" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
-                @empty
-                <div class="row card shadow-lg bg-white mt-2">
-                    <div class="card-body text-center">
-                        <div class="card-title pt-2 mb-2">
-                            <h3>This event has no pictures yet!</h3>
+                @if (!empty($event->eventImages))
+                    <div class="row card shadow-lg d-flex flex-row bd-highlight bg-white mt-2">
+                        @foreach($event->eventImages as $eventImage)
+                            <img class="rounded-circle m-3" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
+                        @endforeach
+                    </div>
+                @else
+                    <div class="row card shadow-lg bg-white mt-2">
+                        <div class="card-body text-center">
+                            <div class="card-title pt-2 mb-2">
+                                <h3>This event has no pictures yet!</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endforelse
+                @endif
                 <form class="row" role="form" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data" autocomplete="off">
                         @method('POST')
                         @csrf
@@ -55,11 +59,14 @@
                         @csrf
 
                         <div class="input-group d-flex">
-                            <div class="input-group-prepend">
+                            <div class="d-flex flex-row bd-highlight">
                                 <img class="rounded-circle" src="{{ asset(auth()->user()->image) }}" style="width:50px; height:50px;" alt="profile picture">
                             </div>
-                            <input type="text" class="form-control ml-1 mt-2" name="comment" placeholder="Write a comment...">
-                            <div class="btn-group pt-1 pb-1" role="group" aria-label="Basic example">
+                            <div class="flex-grow-1 bd-highlight">
+                                    <input type="text" class="form-control ml-1 mt-2" name="comment" placeholder="Write a comment...">
+                            </div>
+                            
+                            <div class="btn-group m-2" role="group" aria-label="Basic example">
                                 <button class="btn btn-primary ml-1" id="add_comment" name="add_comment" type="submit">Comment</button>
                             </div>
                         </div>
