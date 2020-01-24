@@ -7,97 +7,85 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            <div class="text-center pt-3 pb-2 mb-3">
+            <div class="text-center">
                 <h1>{{ $event->name }}</h1>
             </div>
 
             <div class="d-flex justify-content-between mb-2">
-                <a href="">Back to callendar</a>
-                <button>Edit</button>
+                <a class="text-primary" href="{{ url('home') }}">Back to callendar</a>
             </div>
 
-            <div class="row">
-                <div class="border col-md-6">
-                    <div class="container p-3">
-                        <p>Event name: {{ $event->name }}</p>
-                        <p>Event type: {{ $event->public ? "Public" : "Private"}}</p>
-                        <p>Organizer: {{ $event->organizer }}</p>
-                        <p>Date: {{ date( 'F j, Y, H:i', strtotime($event->start_date)) }} </p>
-                        <p>Number of people: </p>
-                        <p>Menu type: </p>
-                        <p>Location: {{ $event->address }}</p>
-                        <p>Description: {{ $event->description }} </p>
+            <div class="container p-6">
+                <div class="row">
+                    <div class="border bg-white">
+                            <p class="m-0 m-3">Event name: {{ $event->name }}</p>
+                            <p class="m-0 m-3">Event type: {{ $event->public ? "Public" : "Private"}}</p>
+                            <p class="m-0 m-3">Organizer: {{ $event->organizer }}</p>
+                            <p class="m-0 m-3">Date: {{ date( 'F j, Y, H:i', strtotime($event->start_date)) }} </p>
+                            <p class="m-0 m-3">Number of people: </p>
+                            <p class="m-0 m-3">Menu type: </p>
+                            <p class="m-0 m-3">Location: {{ $event->address }}</p>
+                            <p class="m-0 m-3">Description: {{ $event->description }} </p>
                     </div>
                 </div>
-            </div>
-
-            <div class="container pt-3">
-                <form role="form" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data" autocomplete="off">
-                    @method('POST')
-
-                    @csrf
-
-                    <div class="custom-file ml-2 mr-2">
-                        <input type="file" class="custom-file-input" id="image" name="event_image">
-                        <label class="custom-file-label" for="event_image">Upload image to event</label>
-                    </div>
-                    <button type="submit" id="add_image" name="add_image" class="btn btn-primary">Upload</button>
-                </form>
-
-                
-                    @forelse($event->eventImages as $eventImage)
-                    <img class="rounded-circle" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
-                    @empty
-                    <div class="card shadow-lg bg-white mb-3">
-                        <div class="card-body text-center">
-                            <div class="card-title pt-3 pb-2 mb-2">
-                                <h3>This event has no pictures yet!</h3>
-                            </div>
+                @forelse($event->eventImages as $eventImage)
+                <img class="rounded-circle" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
+                @empty
+                <div class="row card shadow-lg bg-white mt-2">
+                    <div class="card-body text-center">
+                        <div class="card-title pt-2 mb-2">
+                            <h3>This event has no pictures yet!</h3>
                         </div>
                     </div>
-                    @endforelse
-               
-            </div>
-
-            @if (!empty($comments))
-            <div class="container pt-3">
-                <div class="card p-2">
+                </div>
+                @endforelse
+                <form class="row" role="form" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data" autocomplete="off">
+                        @method('POST')
+                        @csrf
+                        <div class="custom-file bg-white mt-2 mb-2">
+                            <input type="file" class="custom-file-input" id="image" name="event_image">
+                            <label class="custom-file-label" for="event_image">Upload image to event</label>
+                        </div>
+                    <button type="submit" id="add_image" name="add_image" class="btn btn-primary">Upload</button>
+                </form>
+                @if (!empty($comments))
+                <div class="row card p-2 mt-2">
                     <!-- Write a comment -->
-                    <form role="form" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data">
+                    <form role="form" class="border p-3 bg-light" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="input-group mb-2 mt-2">
+                        <div class="input-group d-flex">
                             <div class="input-group-prepend">
                                 <img class="rounded-circle" src="{{ asset(auth()->user()->image) }}" style="width:50px; height:50px;" alt="profile picture">
                             </div>
                             <input type="text" class="form-control ml-1 mt-2" name="comment" placeholder="Write a comment...">
-                            <div class="input-group-append">
-                                <button class="btn-sm btn-outline-success mt-2 mb-2" id="add_comment" name="add_comment" type="submit">Comment</button>
+                            <div class="btn-group pt-1 pb-1" role="group" aria-label="Basic example">
+                                <button class="btn btn-primary ml-1" id="add_comment" name="add_comment" type="submit">Comment</button>
                             </div>
                         </div>
                     </form>
                     <!--/ Write a comment -->
 
                     @forelse($comments as $comment)
-                    <blockquote class="blockquote">
-                        <span class="float-left mt-2">
+                    <blockquote class="blockquote ml-5 mt-2">
+                        <div class="d-flex flex-row">
                             <a href=""><img class="rounded-circle" style="width:50px; height:50px;" src="{{ asset($comment->user->image) }}" alt="..."></a>
-                        </span>
+                        </div>
 
-                        <p class="mb-0"><a href='#'>{{ $comment->user->username }}</a> {{ $comment->comment }} </p>
-                        <footer class="blockquote-footer d-flex flex-row">
-                            <div class="mr-2">{{ date( 'F j, Y, g:i a', strtotime($comment->created_at)) }}</div>
+                        <a class="text-primary" href='#'>{{ $comment->user->username }}</a> <div class="border bg-white p-3"> {{ $comment->comment }} </div>
+                        <footer class="blockquote-footer d-flex flex-row mt-2">
+                            <div class="w-100 bd-highlight">{{ date( 'F j, Y, g:i a', strtotime($comment->created_at)) }}</div>
                             @if($comment->user_id == auth()->user()->id)
                             <form method="post" action="{{ route('event_view.delete', $comment->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn-sm btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-primary" type="submit">Delete</button>
                             </form>
                             @endif
                         </footer>
                     </blockquote>
                     @empty
-                    <div class="card shadow-lg bg-white mb-3">
+                    <div class="card shadow-lg bg-white">
                         <div class="card-body text-center">
                             <div class="card-title pt-3 pb-2 mb-2">
                                 <h3>This event has no comments yet!</h3>
@@ -110,8 +98,8 @@
                         {{ $comments->links() }}
                     </div>
                 </div>
-            </div>
             @endif
+            </div>
         </div>
     </div>
 </div>
