@@ -129,6 +129,9 @@ class EventController extends Controller
         //Post event picture
         if ($request->has('add_image')) {
             $image_path = $request->file('event_image');
+            if($image_path == null){
+                return back()->with('error', "You haven't specified an Image!");
+            }
             $filename = time() . "." . $image_path->getClientOriginalExtension();
             Image::make($image_path)->save(public_path('storage/' . $filename));
             //$event->eventImages()->event_image = $filename;
