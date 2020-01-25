@@ -28,13 +28,12 @@
                             <p class="m-0 m-3">Description: {{ $event->description }} </p>
                     </div>
                 </div>
-                @if (!empty($event->eventImages))
+
+                @forelse($event->eventImages as $eventImage)
                     <div class="row card shadow-lg d-flex flex-row bd-highlight bg-white mt-2">
-                        @foreach($event->eventImages as $eventImage)
-                            <img class="rounded-circle m-3" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
-                        @endforeach
+                        <img class="rounded-circle m-3" src="{{ asset('storage/'.$eventImage->event_image) }}" style="width:100px; height:100px;" alt="event picture">
                     </div>
-                @else
+                @empty
                     <div class="row card shadow-lg bg-white mt-2">
                         <div class="card-body text-center">
                             <div class="card-title pt-2 mb-2">
@@ -42,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endforelse
                 <form class="row" role="form" method="POST" action="{{ route('event_view.store', $event->id ) }}" enctype="multipart/form-data" autocomplete="off">
                         @method('POST')
                         @csrf
