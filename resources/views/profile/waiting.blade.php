@@ -13,11 +13,16 @@
                         <p class="lead">{{$event->description}}</p>
                         <p> {{$event->start_date}} </p>
                         <p> {{$event->end_date}}  </p> 
-                        @if (Auth::user()->organizer)
-                            <p class="lead">
-                                <a class="btn btn-primary btn-lg" href="{{ route('event.approve', $event->id)}}" role="button">Approve</a>
-                            </p>
-                        @endif
+                        <div class="btn-toolbar mb-3" role="toolbar">
+                            <div class="btn-group mr-4" role="group">
+                                <a href="{{url("/events/show/$event->id")}}"><button type="button" class="btn btn-primary">View</button></a>
+                            </div>  
+                            @if (Auth::user()->organizer)
+                                <div class="btn-group mr-4" role="group"> 
+                                    <a href="{{ route('event.approve', $event->id)}}"><button type="button" class="btn btn-primary">Approve</button></a>
+                                </div> 
+                            @endif
+                        </div>
                 </div> 
             </div>
         @endforeach

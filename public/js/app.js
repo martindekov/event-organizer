@@ -59808,19 +59808,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var calendarEl = document.getElementById("calendar");
-  var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
-    height: 650,
-    plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], 'bootstrap'],
-    defaultView: "dayGridMonth",
-    themeSystem: "bootstrap",
-    header: {
-      left: 'prev',
-      center: 'title',
-      right: 'next'
+  var host = window.location.host;
+  var xhr = new XMLHttpRequest();
+  var approvedEvents = [];
+
+  xhr.onreadystatechange = function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+
+        for (var i = 0; i < response.length; i++) {
+          var obj = response[i];
+          var singleEvent = {
+            'title': obj.name,
+            'start': obj.start_date,
+            'end': obj.end_date,
+            'url': "http://" + host + "/events/show/" + obj.id
+          };
+          approvedEvents.push(singleEvent);
+        }
+
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
+          height: 650,
+          plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], 'bootstrap'],
+          defaultView: "dayGridMonth",
+          themeSystem: "bootstrap",
+          events: approvedEvents,
+          header: {
+            left: 'prev',
+            center: 'title',
+            right: 'next'
+          }
+        });
+        console.log(calendar);
+        calendar.render();
+      }
     }
-  });
-  calendar.render();
+  };
+
+  xhr.open('get', "http://" + host + "/events/list", true);
+  xhr.send();
 });
 
 /***/ }),
@@ -59905,7 +59933,11 @@ $(document).ready(function () {
   // alert for updating posting
   setTimeout(function () {
     $(".alert").slideUp(1000);
-  }, 4000); //Show image name on upload
+  }, 4000);
+  $("#datepicker").datepicker({
+    changeMonth: true,
+    changeYear: true
+  }); //Show image name on upload
 
   $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();

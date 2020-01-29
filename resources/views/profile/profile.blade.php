@@ -7,7 +7,6 @@
     <div class="col-md-12 justify-content-center">
         <div class="row text-center">
             <div class="col-md-3 p-5">
-                <!-- it should work now -->
                 <img src="{{ url($user->image) }}" style="width:120px; height:120px;" class="rounded-circle w-70">
             </div>
             <div class="col-md-9 align-self-center">
@@ -120,18 +119,17 @@
 
                         @if ($user->address->line_2 == null)
                         <div>
-                            <label for="line_2">No address added</label>
+                            <label for="line_2">'No address added</label>
                         </div>
                         @else
                         <div>
-                            <label for="line_2">{{ $user->address->line_2 }}</label>
+                            <label for="line_2">$user->address->line_2</label>
                         </div>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Profile update modals -->
         @include('layouts.modals.profile_image')
         @include('layouts.modals.profile_password')

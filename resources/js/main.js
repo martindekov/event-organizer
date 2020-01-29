@@ -4,6 +4,11 @@ $(document).ready(function() {
         $(".alert").slideUp(1000);
     }, 4000);
 
+    $("#datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+
     //Show image name on upload
     $(".custom-file-input").on("change", function() {
         var fileName = $(this)
