@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'EventO')
+@section('title', 'events')
 
 @section('content')
 <div class="container">
@@ -15,12 +15,12 @@
             </div>
 
             <div class="row">
-                @if (auth()->user())
+                @if (auth()->user() && auth()->user()->organizer == false)
                     <div class="col-md-8">
                         <div id="calendar"></div>
                     </div>
                     <div class="col-md-4 align-self-center">
-                        <!-- Tuk shte slojim denq ot kalendara -->
+                        <!-- here will be the date of the calendar -->
                         <div class="text-center">
                             <h4>Date of calendar</h4>
                         </div>
