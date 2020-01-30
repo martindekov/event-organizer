@@ -10,6 +10,8 @@
             <div class="text-center pt-3 pb-2 mb-3">
                 <h1>{{ __('EventO') }}</h1>
             </div>
+            
+            @if (auth()->user() && auth()->user()->organizer == false)
             <form method="POST" action="{{ route('event.create') }}" id='theform'>
                 @csrf
                 <div class="form-row">
@@ -85,6 +87,14 @@
                     </div>
                 </div>
             </form>
+            @else
+            <div class="text-center pt-3 pb-2 mb-3">
+                <h1>Sorry only clients can create events</h1>
+            </div>
+            <div class="col-md-12 text-center">
+                <a class="btn btn-lg btn-primary" href="{{ url('home') }}">Back to callendar</a>
+            </div>
+            @endif
         </div>
     </div>
 </div>
