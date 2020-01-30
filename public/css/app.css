@@ -11987,3 +11987,17 @@ a.fc-more:hover {
   min-width: 1.25em;
 }
 
+.nav-link {
+  color: #000000;
+}
+
+.nav-pills > li > a {
+  border: medium none;
+}
+
+.nav-pills > li > a:hover {
+  color: #009507 !important;
+  border: medium none;
+  border-radius: 0;
+}
+

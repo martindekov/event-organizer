@@ -59954,26 +59954,11 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// $(document).ready(function () {
-//     $(".dropdown").hover(
-//         function (ev) {
-//             if ($(this).children(".dropdown-menu.opened").length == 0) {
-//                 $(this)
-//                     .children(".dropdown-menu")
-//                     .slideDown("medium")
-//                     .addClass("opened");
-//             }
-//         },
-//         function (ev) {
-//             if ($(this).children(".dropdown-menu.opened").length > 0) {
-//                 $(this)
-//                     .children(".dropdown-menu")
-//                     .slideUp("slow")
-//                     .removeClass("opened");
-//             }
-//         }
-//     );
-// });
+$(document).ready(function () {
+  $(document).on("click", 'a[data-toggle="collapse"]', function (onclick) {
+    onclick.stopPropagation();
+  });
+});
 
 /***/ }),
 
