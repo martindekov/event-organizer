@@ -140,7 +140,7 @@
                         </div>
                         @else
                         <div>
-                            <label for="line_2">$user->address->line_2</label>
+                            <label for="line_2">{{ $user->address->line_2 }}</label>
                         </div>
                         @endif
                     </div>
