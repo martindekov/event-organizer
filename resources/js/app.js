@@ -7,7 +7,7 @@
 require('./bootstrap');
 require('./main');
 require('./navbar');
-require('./calendar');
+require('./newcalendar');
 
 window.Vue = require('vue');
 
