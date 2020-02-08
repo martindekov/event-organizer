@@ -35,7 +35,6 @@ class ProfileController extends Controller
         if ($request->has('update_profile')) {
 
             $userData = request()->validate([
-                'username' => 'required|string|max:255', Rule::unique('users')->ignore($user->id),
                 'email' => 'required|email|max:255', Rule::unique('users')->ignore($user->id),
                 'firstname' => 'required|string|max:255',
                 'lastname' => 'required|string|max:255',

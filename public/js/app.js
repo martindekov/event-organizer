@@ -59723,6 +59723,8 @@ __webpack_require__(/*! ./main */ "./resources/js/main.js");
 
 __webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
 
+__webpack_require__(/*! ./event_image */ "./resources/js/event_image.js");
+
 __webpack_require__(/*! ./calendar */ "./resources/js/calendar.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -59922,6 +59924,24 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/event_image.js":
+/*!*************************************!*\
+  !*** ./resources/js/event_image.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $(function () {
+    $("#image img").on("click", function () {
+      var src = $(this).attr("src");
+      $(".modal-img").prop("src", src);
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
@@ -59933,11 +59953,7 @@ $(document).ready(function () {
   // alert for updating posting
   setTimeout(function () {
     $(".alert").slideUp(1000);
-  }, 4000);
-  $("#datepicker").datepicker({
-    changeMonth: true,
-    changeYear: true
-  }); //Show image name on upload
+  }, 4000); //Show image name on upload
 
   $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();

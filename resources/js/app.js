@@ -7,6 +7,7 @@
 require('./bootstrap');
 require('./main');
 require('./navbar');
+require('./event_image');
 require('./calendar');
 
 window.Vue = require('vue');
